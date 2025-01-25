@@ -1,0 +1,13 @@
+# Docker
+db_data/
+wp-content/
+
+# WordPress
+wp-config.php
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
