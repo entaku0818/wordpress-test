@@ -24,6 +24,24 @@ Dockerを使用したローカルWordPress開発環境
 docker-compose down
 ```
 
+## ディレクトリ構造
+- wp-content/
+  - languages/ - 日本語翻訳ファイル
+  - plugins/ - インストール済みプラグイン
+  - themes/ - 使用可能なテーマ
+
+## 使用テーマ
+- Twenty Twenty-Three (デフォルト)
+- Twenty Twenty-Four
+- Twenty Twenty-Five
+
+## 使用プラグイン
+- Akismet Anti-Spam
+- Hello Dolly
+
+## 言語設定
+- 日本語 (ja) がデフォルトで有効化
+
 ## 開発者向け情報
 - データベース情報:
   - ホスト: db
