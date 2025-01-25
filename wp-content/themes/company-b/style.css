@@ -1,0 +1,29 @@
+/*
+Theme Name: Company B Theme
+Template: twentytwentyfive
+Version: 1.0
+*/
+
+/* Import parent theme styles */
+@import url("../twentytwentyfive/style.css");
+
+/* Company B specific styles */
+body.company-b {
+  --wp--preset--color--primary: #ea4335;
+  --wp--preset--color--secondary: #fbbc05;
+  --wp--preset--color--background: #f8f9fa;
+}
+
+/* Custom header style */
+.company-b .wp-block-site-title a {
+  color: var(--wp--preset--color--primary);
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+/* Custom button style */
+.company-b .wp-block-button__link {
+  background-color: var(--wp--preset--color--primary);
+  border-radius: 8px;
+  padding: 1rem 2rem;
+}

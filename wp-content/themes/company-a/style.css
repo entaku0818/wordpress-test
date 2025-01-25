@@ -1,0 +1,29 @@
+/*
+Theme Name: Company A Theme
+Template: twentytwentyfive
+Version: 1.0
+*/
+
+/* Import parent theme styles */
+@import url("../twentytwentyfive/style.css");
+
+/* Company A specific styles */
+body.company-a {
+  --wp--preset--color--primary: #1a73e8;
+  --wp--preset--color--secondary: #34a853;
+  --wp--preset--color--background: #ffffff;
+}
+
+/* Custom header style */
+.company-a .wp-block-site-title a {
+  color: var(--wp--preset--color--primary);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Custom button style */
+.company-a .wp-block-button__link {
+  background-color: var(--wp--preset--color--primary);
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+}

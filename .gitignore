@@ -1,6 +1,6 @@
 # Docker
 db_data/
-wp-content/
+
 
 # WordPress
 wp-config.php
