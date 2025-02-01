@@ -156,3 +156,43 @@ if ( ! function_exists( 'twentytwentyfive_format_binding' ) ) :
 		}
 	}
 endif;
+
+
+function custom_company_styles() {
+    $categories = get_the_category();
+    
+    // デバッグ表示を追加
+    echo "<!-- Debug: Categories -->";
+    foreach($categories as $category) {
+        echo "<!-- Category: {$category->name}, Slug: {$category->slug}, Parent: {$category->parent} -->";
+        if ($category->parent > 0) {
+            $parent_cat = get_category($category->parent);
+            echo "<!-- Parent Category: {$parent_cat->name}, Slug: {$parent_cat->slug} -->";
+        }
+    }
+
+    foreach($categories as $category) {
+        $parent_id = $category->parent;
+        
+        if ($parent_id > 0) {
+            $parent_cat = get_category($parent_id);
+            if ($parent_cat->slug === 'company-group') {
+                // より目立つテスト用スタイル
+                echo '<style>
+                    body { 
+                        border: 5px solid red !important; /* 明確に視認できる境界線 */
+                    }
+                    .site-header { 
+                        background-color: #4CAF50 !important; /* 強制的に背景色を変更 */
+                    }
+             		h1 { 
+                        color: #4CAF50 !important;
+                        font-size: 2.5rem !important;
+                        font-weight: bold !important;
+                    }
+                </style>';
+            }
+        }
+    }
+}
+add_action('wp_head', 'custom_company_styles');
