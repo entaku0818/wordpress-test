@@ -1,5 +1,4 @@
 <?php
-get_header();
 
 $category = get_queried_object();
 $subcategories = get_terms([
@@ -104,4 +103,3 @@ h2 {
 }
 </style>
 
-<?php get_footer(); ?>
