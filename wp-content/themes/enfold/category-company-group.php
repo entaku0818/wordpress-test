@@ -12,15 +12,22 @@ echo '<div class="container">';
 echo '<h1>' . esc_html($category->name) . '</h1>';
 echo '<div class="company-grid">';
 
+echo '<div class="company-row">';
 foreach ($subcategories as $subcategory) {
-    echo '<div class="company-card">';
-    echo '<div class="company-image">';
-    $image_path = get_template_directory_uri() . '/images/' . $subcategory->term_id . '.jpg';
-    echo '<img src="' . esc_url($image_path) . '" alt="' . esc_attr($subcategory->name) . '">';
-    echo '</div>';
-    echo '<h3 class="company-name">' . esc_html($subcategory->name) . ' (ID: ' . $subcategory->term_id . ')</h3>';
-    echo '</div>';
+    $link = get_term_link($subcategory);
+    ?>
+    <a href="<?php echo esc_url($link); ?>" class="company-card">
+        <div class="company-image">
+            <?php 
+            $image_path = get_template_directory_uri() . '/images/' . $subcategory->term_id . '.jpg';
+            echo '<img src="' . esc_url($image_path) . '" alt="' . esc_attr($subcategory->name) . '">';
+            ?>
+        </div>
+        <h3 class="company-name"><?php echo esc_html($subcategory->name) . ' (ID: ' . $subcategory->term_id . ')'; ?></h3>
+    </a>
+    <?php
 }
+echo '</div>';
 
 echo '</div>';
 echo '</div>';
@@ -34,10 +41,13 @@ echo '</div>';
 }
 
 .company-grid {
+    margin: 20px 0;
+}
+
+.company-row {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-    margin: 20px 0;
 }
 
 .company-card {
@@ -47,6 +57,8 @@ echo '</div>';
     overflow: hidden;
     transition: transform 0.2s;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
 }
 
 .company-card:hover {
