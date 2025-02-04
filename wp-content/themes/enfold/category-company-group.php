@@ -1,4 +1,5 @@
 <?php
+get_header();
 
 $category = get_queried_object();
 $subcategories = get_terms([
@@ -9,47 +10,19 @@ $subcategories = get_terms([
 
 echo '<div class="container">';
 echo '<h1>' . esc_html($category->name) . '</h1>';
+echo '<div class="company-grid">';
 
 foreach ($subcategories as $subcategory) {
-    $args = array(
-        'post_type' => 'post',
-        'posts_per_page' => -1,
-        'tax_query' => array(
-            array(
-                'taxonomy' => 'category',
-                'field' => 'term_id',
-                'terms' => $subcategory->term_id
-            )
-        )
-    );
-    
-    $query = new WP_Query($args);
-    
-    if ($query->have_posts()) :
-        echo '<div class="subcategory-section">';
-        echo '<h2>' . esc_html($subcategory->name) . '</h2>';
-        echo '<div class="company-grid">';
-        
-        while ($query->have_posts()) :
-            $query->the_post();
-            ?>
-            <div class="company-card">
-                <?php if (has_post_thumbnail()) : ?>
-                    <div class="company-image">
-                        <?php the_post_thumbnail('medium'); ?>
-                    </div>
-                <?php endif; ?>
-                <h3 class="company-name"><?php the_title(); ?></h3>
-            </div>
-            <?php
-        endwhile;
-        
-        echo '</div>';
-        echo '</div>';
-    endif;
-    wp_reset_postdata();
+    echo '<div class="company-card">';
+    echo '<div class="company-image">';
+    $image_path = get_template_directory_uri() . '/images/' . $subcategory->term_id . '.jpg';
+    echo '<img src="' . esc_url($image_path) . '" alt="' . esc_attr($subcategory->name) . '">';
+    echo '</div>';
+    echo '<h3 class="company-name">' . esc_html($subcategory->name) . ' (ID: ' . $subcategory->term_id . ')</h3>';
+    echo '</div>';
 }
 
+echo '</div>';
 echo '</div>';
 ?>
 
@@ -73,6 +46,7 @@ echo '</div>';
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     overflow: hidden;
     transition: transform 0.2s;
+    cursor: pointer;
 }
 
 .company-card:hover {
@@ -91,15 +65,6 @@ echo '</div>';
     font-size: 16px;
     text-align: center;
 }
-
-.subcategory-section {
-    margin: 40px 0;
-}
-
-h2 {
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
 </style>
 
+<?php get_footer(); ?>
